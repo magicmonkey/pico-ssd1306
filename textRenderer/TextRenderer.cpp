@@ -15,6 +15,12 @@ namespace pico_ssd1306 {
                 case Rotation::deg90:
                     drawChar(ssd1306, font, text[n], anchor_x, anchor_y + (n * font_width), mode, rotation);
                     break;
+                case Rotation::deg180:
+                    drawChar(ssd1306, font, text[n], anchor_x - (n * font_width), anchor_y, mode, rotation);
+                    break;
+                case Rotation::deg270:
+                    drawChar(ssd1306, font, text[n], anchor_x, anchor_y - (n * font_width), mode, rotation);
+                    break;
             }
 
             n++;
@@ -39,10 +45,16 @@ namespace pico_ssd1306 {
                 if (font[seek] >> b_seek & 0b00000001) {
                     switch (rotation) {
                         case Rotation::deg0:
-                            ssd1306->setPixel(x + anchor_x, y + anchor_y, mode);
+                            ssd1306->setPixel( x + anchor_x,                y + anchor_y, mode);
                             break;
                         case Rotation::deg90:
-                            ssd1306->setPixel(-y + anchor_x + font_height, x + anchor_y, mode);
+                            ssd1306->setPixel(-y + anchor_x + font_height,  x + anchor_y, mode);
+                            break;
+                        case Rotation::deg180:
+                            ssd1306->setPixel(-x + anchor_x,               -y + anchor_y, mode);
+                            break;
+                        case Rotation::deg270:
+                            ssd1306->setPixel( y + anchor_x + font_height, -x + anchor_y, mode);
                             break;
                     }
                 }

@@ -18,6 +18,8 @@ namespace pico_ssd1306{
         deg0,
         /// deg 90 - means 90 deg rotation
         deg90,
+        deg180,
+        deg270,
     };
 
     /// \brief Draws a single glyph on the screen
